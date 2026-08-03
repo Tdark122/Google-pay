@@ -3,64 +3,241 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>security requirements</title>
+<title>MK Digital Marketplace</title>
 <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
-  body{min-height:100vh;background:#121212;display:flex;flex-direction:column;align-items:center;padding:2rem 1rem;font-family:'Roboto',sans-serif;}
-  .gp-card{background:#1e1e1e;border-radius:28px;width:100%;max-width:420px;padding:2.5rem 2.5rem 2rem;box-shadow:0 1px 3px rgba(0,0,0,.5),0 4px 16px rgba(0,0,0,.3);}
-  .gp-logo{display:flex;align-items:center;gap:6px;margin-bottom:1.5rem;justify-content:center;}
-  .gp-g{font-family:'Google Sans',sans-serif;font-size:28px;font-weight:700;letter-spacing:-0.5px;}
-  .c-b{color:#5b9ef5}.c-r{color:#ff6d5b}.c-y{color:#fcc934}.c-gr{color:#5cdb60}
-  .gp-pay{font-family:'Google Sans',sans-serif;font-size:22px;font-weight:400;color:#e8eaed;}
-  h2{font-family:'Google Sans',sans-serif;font-size:22px;font-weight:500;color:#e8eaed;margin-bottom:1.75rem;text-align:center;}
-  .field{margin-bottom:1rem;}
-  .field label{display:block;font-size:12px;font-weight:500;color:#9aa0a6;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px;}
-  .field input{width:100%;height:48px;border:1.5px solid #3c4043;border-radius:10px;padding:0 14px;font-size:15px;color:#e8eaed;background:#2d2d2d;font-family:'Roboto',sans-serif;outline:none;transition:all .2s;}
-  .field input:focus{border-color:#5b9ef5;box-shadow:0 0 0 3px rgba(91,158,245,.2);}
-  .field input::placeholder{color:#5f6368;}
-  .btn-connect{width:100%;height:50px;border:none;border-radius:24px;background:#5b9ef5;color:#fff;font-size:16px;font-weight:700;font-family:'Google Sans',sans-serif;cursor:pointer;margin-top:1.5rem;display:flex;align-items:center;justify-content:center;gap:10px;transition:all .2s;}
-  .btn-connect:hover{box-shadow:0 4px 16px rgba(91,158,245,.4);transform:translateY(-1px);}
-  .btn-connect:active{transform:scale(.98);}
-  .btn-connect:disabled{opacity:.75;cursor:not-allowed;}
-  .gpay-icon{width:24px;height:24px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-  .gpay-g{font-family:'Google Sans',sans-serif;font-size:14px;font-weight:700;color:#5b9ef5;}
-  .toast{display:none;border-radius:20px;text-align:center;margin-top:1rem;padding:10px 18px;font-size:13px;color:#fff;align-items:center;justify-content:center;gap:8px;}
-  .toast.show{display:flex;}
-  .terms{font-size:11.5px;color:#5f6368;text-align:center;margin-top:1rem;line-height:1.5;}
-  .terms a{color:#5b9ef5;text-decoration:none;}
+  body{min-height:100vh;background:#0f0f0f;color:#e8eaed;font-family:'Roboto',sans-serif;padding-bottom:2rem;}
+  
+  /* Header */
+  .header{background:#1a1a1a;padding:1rem 2rem;box-shadow:0 2px 8px rgba(0,0,0,.3);position:sticky;top:0;z-index:100;}
+  .header-content{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;}
+  .logo{display:flex;align-items:center;gap:8px;font-size:24px;font-weight:700;}
+  .logo .g{color:#5b9ef5}.logo .m{color:#ff6d5b}
+  .search-bar{flex:1;max-width:400px;margin:0 2rem;display:flex;}
+  .search-bar input{width:100%;padding:8px 16px;border:1.5px solid #3c4043;border-radius:24px;background:#2d2d2d;color:#e8eaed;outline:none;}
+  .search-bar input:focus{border-color:#5b9ef5;}
+  .admin-link{color:#5b9ef5;text-decoration:none;font-size:14px;padding:8px 16px;border-radius:8px;transition:.3s;}
+  .admin-link:hover{background:#2d2d2d;}
+  
+  /* Container */
+  .container{max-width:1200px;margin:2rem auto;padding:0 1rem;}
+  
+  /* Hero */
+  .hero{background:linear-gradient(135deg, #5b9ef5 0%, #ff6d5b 100%);border-radius:20px;padding:3rem 2rem;text-align:center;color:#fff;margin-bottom:3rem;}
+  .hero h1{font-size:32px;margin-bottom:0.5rem;font-family:'Google Sans',sans-serif;}
+  .hero p{font-size:16px;opacity:.9;}
+  
+  /* Products Grid */
+  .products-section{margin-top:2rem;}
+  .section-title{font-size:24px;font-weight:600;margin-bottom:1.5rem;color:#e8eaed;font-family:'Google Sans',sans-serif;}
+  .products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem;}
+  
+  /* Product Card */
+  .product-card{background:#1e1e1e;border-radius:16px;overflow:hidden;border:1px solid #3c4043;transition:.3s;cursor:pointer;display:flex;flex-direction:column;}
+  .product-card:hover{box-shadow:0 8px 24px rgba(91,158,245,.2);border-color:#5b9ef5;transform:translateY(-2px);}
+  .product-image{width:100%;height:200px;background:linear-gradient(135deg, #5b9ef5 0%, #5cdb60 100%);display:flex;align-items:center;justify-content:center;font-size:60px;}
+  .product-info{padding:1.5rem;flex:1;display:flex;flex-direction:column;}
+  .product-name{font-size:18px;font-weight:600;margin-bottom:0.5rem;color:#fff;}
+  .product-desc{font-size:13px;color:#9aa0a6;margin-bottom:1rem;flex:1;}
+  .product-price{font-size:20px;font-weight:700;color:#5b9ef5;margin-bottom:1rem;}
+  .product-actions{display:flex;gap:0.5rem;}
+  .btn-purchase{flex:1;padding:10px 16px;background:#5b9ef5;color:#fff;border:none;border-radius:8px;font-weight:600;cursor:pointer;transition:.3s;font-size:14px;}
+  .btn-purchase:hover{background:#4a8ae5;box-shadow:0 4px 12px rgba(91,158,245,.4);}
+  .btn-purchase:active{transform:scale(.98);}
+  
+  /* Modal */
+  .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.7);z-index:1000;align-items:center;justify-content:center;}
+  .modal.show{display:flex;}
+  .modal-content{background:#1e1e1e;border-radius:16px;padding:2rem;max-width:500px;width:90%;box-shadow:0 10px 40px rgba(0,0,0,.5);}
+  .modal-header{font-size:22px;font-weight:600;margin-bottom:1.5rem;display:flex;justify-content:space-between;align-items:center;}
+  .modal-close{background:none;border:none;color:#9aa0a6;font-size:24px;cursor:pointer;}
+  .modal-close:hover{color:#e8eaed;}
+  .modal-field{margin-bottom:1.5rem;}
+  .modal-field label{display:block;font-size:13px;font-weight:500;color:#9aa0a6;margin-bottom:8px;text-transform:uppercase;}
+  .modal-field input{width:100%;padding:12px;border:1.5px solid #3c4043;border-radius:8px;background:#2d2d2d;color:#e8eaed;font-size:14px;font-family:'Roboto',sans-serif;outline:none;}
+  .modal-field input:focus{border-color:#5b9ef5;}
+  .modal-actions{display:flex;gap:1rem;}
+  .btn-confirm{flex:1;padding:12px;background:#5b9ef5;color:#fff;border:none;border-radius:8px;font-weight:600;cursor:pointer;}
+  .btn-confirm:hover{background:#4a8ae5;}
+  .btn-cancel{flex:1;padding:12px;background:#3c4043;color:#e8eaed;border:none;border-radius:8px;font-weight:600;cursor:pointer;}
+  .btn-cancel:hover{background:#4a5058;}
+  
+  /* Toast */
+  .toast{display:none;position:fixed;bottom:2rem;right:2rem;background:#1b8917;color:#fff;padding:12px 20px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.4);z-index:2000;}
+  .toast.show{display:block;animation:slideIn .3s ease;}
+  @keyframes slideIn{from{transform:translateX(400px);opacity:0}to{transform:translateX(0);opacity:1}}
+  
+  /* Empty State */
+  .empty-state{text-align:center;padding:3rem 1rem;color:#9aa0a6;}
+  .empty-state i{font-size:48px;margin-bottom:1rem;opacity:.5;}
+  
+  /* Admin Page */
+  .admin-container{display:none;max-width:1000px;margin:2rem auto;}
+  .admin-container.show{display:block;}
+  .admin-header{background:#1e1e1e;padding:2rem;border-radius:12px;margin-bottom:2rem;border:1px solid #3c4043;}
+  .admin-header h1{font-size:28px;margin-bottom:1rem;}
+  .admin-section{background:#1e1e1e;padding:2rem;border-radius:12px;margin-bottom:2rem;border:1px solid #3c4043;}
+  .admin-section h2{font-size:20px;margin-bottom:1.5rem;color:#5b9ef5;}
+  .admin-form{display:flex;flex-direction:column;gap:1rem;}
+  .form-group{display:flex;flex-direction:column;}
+  .form-group label{font-size:13px;font-weight:500;color:#9aa0a6;margin-bottom:6px;text-transform:uppercase;}
+  .form-group input,.form-group textarea{padding:12px;border:1.5px solid #3c4043;border-radius:8px;background:#2d2d2d;color:#e8eaed;font-size:14px;font-family:'Roboto',sans-serif;outline:none;}
+  .form-group input:focus,.form-group textarea:focus{border-color:#5b9ef5;}
+  .form-group textarea{resize:vertical;min-height:80px;}
+  .btn-submit{padding:12px;background:#5b9ef5;color:#fff;border:none;border-radius:8px;font-weight:600;cursor:pointer;font-size:14px;}
+  .btn-submit:hover{background:#4a8ae5;}
+  .products-list{display:flex;flex-direction:column;gap:1rem;margin-top:1.5rem;}
+  .product-item{background:#2d2d2d;padding:1.5rem;border-radius:8px;display:flex;justify-content:space-between;align-items:center;border:1px solid #3c4043;}
+  .product-item-info h3{font-size:16px;margin-bottom:0.5rem;}
+  .product-item-info p{font-size:13px;color:#9aa0a6;}
+  .product-item-actions{display:flex;gap:0.5rem;}
+  .btn-delete{padding:6px 12px;background:#c5221f;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:12px;}
+  .btn-delete:hover{background:#a01815;}
+  .password-prompt{text-align:center;}
+  .password-input{max-width:300px;margin:0 auto;}
+  
+  /* Auth Status */
+  .auth-status{text-align:center;padding:2rem;background:#1e1e1e;border-radius:12px;border:1px solid #3c4043;}
+  .auth-status p{margin-bottom:1rem;}
+  .btn-logout{padding:10px 20px;background:#c5221f;color:#fff;border:none;border-radius:8px;cursor:pointer;}
+  .btn-logout:hover{background:#a01815;}
 </style>
 </head>
 <body>
-  <div class="gp-card">
-    <div class="gp-logo">
-      <div class="gp-g"><span class="c-b">G</span><span class="c-r">o</span><span class="c-y">o</span><span class="c-gr">g</span><span class="c-b">l</span><span class="c-r">e</span></div>
-      <div class="gp-pay">secure</div>
+  <!-- Header -->
+  <div class="header">
+    <div class="header-content">
+      <div class="logo">
+        <span class="g">M</span><span class="m">K</span>
+        <span style="margin-left: 8px; font-size: 18px;">Digital</span>
+      </div>
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search products...">
+      </div>
+      <a href="#" class="admin-link" onclick="toggleAdmin(event)">
+        <i class="fas fa-cog"></i> Admin
+      </a>
     </div>
-    <h2>security requirements</h2>
-
-    <div class="field">
-      <label>Email</label>
-      <input id="email" type="email" placeholder="your@gmail.com" />
-    </div>
-    <div class="field">
-      <label>required code</label>
-      <input id="fname" type="text" placeholder="info" />
-    </div>
-
-    <button class="btn-connect" onclick="handleConnect()">
-      <div class="gpay-icon"><span class="gpay-g">G</span></div>
-      Secure
-    </button>
-
-    <div class="toast" id="toast"><span id="toast-msg"></span></div>
-    <p class="terms">By securing you agree to our <a href="#">Terms</a> and <a href="#">Privacy Policy</a></p>
   </div>
+
+  <!-- Main Content -->
+  <div class="container">
+    <!-- Customer View -->
+    <div id="customerView">
+      <div class="hero">
+        <h1>Welcome to MK Digital Marketplace</h1>
+        <p>Discover amazing digital products and services</p>
+      </div>
+
+      <div class="products-section">
+        <h2 class="section-title">Featured Products</h2>
+        <div class="products-grid" id="productsGrid">
+          <!-- Products loaded here -->
+        </div>
+        <div class="empty-state" id="emptyState" style="display:none;">
+          <i class="fas fa-box-open"></i>
+          <p>No products found</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Admin View -->
+    <div class="admin-container" id="adminView">
+      <div class="admin-header">
+        <h1>Admin Dashboard</h1>
+        <p style="color:#9aa0a6; font-size:14px;">Manage your MK Digital Marketplace products</p>
+      </div>
+
+      <!-- Admin Authentication -->
+      <div class="admin-section" id="authSection">
+        <h2>Enter Admin Password</h2>
+        <div class="password-prompt">
+          <div class="password-input">
+            <input type="password" id="adminPassword" placeholder="Enter password" style="width:100%; padding:12px; border:1.5px solid #3c4043; border-radius:8px; background:#2d2d2d; color:#e8eaed; font-size:14px;">
+            <button class="btn-submit" style="margin-top:1rem; width:100%;" onclick="authenticateAdmin()">Authenticate</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dashboard (hidden until authenticated) -->
+      <div id="adminDashboard" style="display:none;">
+        <!-- Add Product -->
+        <div class="admin-section">
+          <h2>Add New Product</h2>
+          <div class="admin-form">
+            <div class="form-group">
+              <label>Product Name *</label>
+              <input type="text" id="productName" placeholder="e.g., Premium Coding Course">
+            </div>
+            <div class="form-group">
+              <label>Description *</label>
+              <textarea id="productDesc" placeholder="Product description"></textarea>
+            </div>
+            <div class="form-group">
+              <label>Price (₦) *</label>
+              <input type="number" id="productPrice" placeholder="0" min="0">
+            </div>
+            <div class="form-group">
+              <label>Emoji Icon</label>
+              <input type="text" id="productEmoji" placeholder="e.g., 🎓" maxlength="2">
+            </div>
+            <button class="btn-submit" onclick="addProduct()">Add Product</button>
+          </div>
+        </div>
+
+        <!-- Products List -->
+        <div class="admin-section">
+          <h2>All Products</h2>
+          <div class="products-list" id="productsList">
+            <!-- Products listed here -->
+          </div>
+          <p style="text-align:center; color:#9aa0a6; margin-top:1rem;" id="noProducts">No products yet</p>
+        </div>
+
+        <!-- Auth Status -->
+        <div class="auth-status">
+          <p>✅ You are logged in as Admin</p>
+          <button class="btn-logout" onclick="logoutAdmin()">Logout</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Purchase Modal -->
+  <div class="modal" id="purchaseModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span id="modalProductName"></span>
+        <button class="modal-close" onclick="closePurchaseModal()">&times;</button>
+      </div>
+      <div class="modal-field">
+        <label>Full Name *</label>
+        <input type="text" id="buyerName" placeholder="Your name">
+      </div>
+      <div class="modal-field">
+        <label>Email *</label>
+        <input type="email" id="buyerEmail" placeholder="your@email.com">
+      </div>
+      <div class="modal-field">
+        <label>WhatsApp Number *</label>
+        <input type="tel" id="buyerPhone" placeholder="2347071358027" value="234">
+      </div>
+      <div class="modal-actions">
+        <button class="btn-confirm" onclick="completePurchase()">Buy via WhatsApp</button>
+        <button class="btn-cancel" onclick="closePurchaseModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast"></div>
 
   <!-- Firebase SDK -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+    import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyC4xb59rh3GVEh9BEzOfF6CG5uu3VHv_Wg",
@@ -74,48 +251,270 @@
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-    window.handleConnect = async function() {
-      const email = document.getElementById('email').value.trim();
-      const name = document.getElementById('fname').value.trim();
-      const toast = document.getElementById('toast');
-      const msg = document.getElementById('toast-msg');
-      const btn = document.querySelector('.btn-connect');
+    // Global variables
+    let allProducts = [];
+    let selectedProduct = null;
+    let adminAuthenticated = false;
+    const ADMIN_PASSWORD = "mk123"; // Change this to your secure password
 
-      if(!email || !email.toLowerCase().endsWith('@gmail.com')){
-        toast.className='toast show'; toast.style.background='#c5221f';
-        msg.textContent='Please enter a valid Gmail address.';
-        setTimeout(()=>toast.className='toast', 3000); return;
+    // Load products on page load
+    window.addEventListener('DOMContentLoaded', loadProducts);
+
+    // Load products from Firestore
+    async function loadProducts() {
+      try {
+        const querySnapshot = await getDocs(collection(db, "mkProducts"));
+        allProducts = [];
+        querySnapshot.forEach((doc) => {
+          allProducts.push({ id: doc.id, ...doc.data() });
+        });
+        displayProducts(allProducts);
+      } catch (error) {
+        console.error("Error loading products:", error);
+        showToast("Error loading products", "error");
       }
-      if(!name){
-        toast.className='toast show'; toast.style.background='#c5221f';
-        msg.textContent='Please enter your full name.';
-        setTimeout(()=>toast.className='toast', 3000); return;
+    }
+
+    // Display products
+    function displayProducts(products) {
+      const grid = document.getElementById('productsGrid');
+      const empty = document.getElementById('emptyState');
+
+      if (products.length === 0) {
+        grid.innerHTML = '';
+        empty.style.display = 'block';
+        return;
       }
 
-      btn.innerHTML='Connecting…'; btn.disabled=true;
+      empty.style.display = 'none';
+      grid.innerHTML = products.map(product => `
+        <div class="product-card">
+          <div class="product-image">${product.emoji || '📦'}</div>
+          <div class="product-info">
+            <div class="product-name">${product.name}</div>
+            <div class="product-desc">${product.description}</div>
+            <div class="product-price">₦${product.price.toLocaleString()}</div>
+            <button class="btn-purchase" onclick="openPurchaseModal('${product.id}', '${product.name}', '${product.price}')">
+              <i class="fas fa-shopping-cart"></i> Buy Now
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Open purchase modal
+    window.openPurchaseModal = function(productId, productName, productPrice) {
+      selectedProduct = { id: productId, name: productName, price: productPrice };
+      document.getElementById('modalProductName').textContent = productName + ' - ₦' + parseInt(productPrice).toLocaleString();
+      document.getElementById('purchaseModal').classList.add('show');
+    };
+
+    // Close purchase modal
+    window.closePurchaseModal = function() {
+      document.getElementById('purchaseModal').classList.remove('show');
+      document.getElementById('buyerName').value = '';
+      document.getElementById('buyerEmail').value = '';
+      document.getElementById('buyerPhone').value = '234';
+    };
+
+    // Complete purchase (send to WhatsApp)
+    window.completePurchase = async function() {
+      const name = document.getElementById('buyerName').value.trim();
+      const email = document.getElementById('buyerEmail').value.trim();
+      const phone = document.getElementById('buyerPhone').value.trim();
+
+      if (!name || !email || !phone) {
+        showToast("Please fill all fields", "error");
+        return;
+      }
+
+      if (!email.includes('@')) {
+        showToast("Please enter a valid email", "error");
+        return;
+      }
 
       try {
-        await addDoc(collection(db, "registrations"), {
-          email: email,
-          fullName: name,
+        // Save purchase to Firestore
+        await addDoc(collection(db, "mkPurchases"), {
+          productId: selectedProduct.id,
+          productName: selectedProduct.name,
+          productPrice: selectedProduct.price,
+          buyerName: name,
+          buyerEmail: email,
+          buyerPhone: phone,
           createdAt: serverTimestamp()
         });
 
-        toast.className='toast show'; toast.style.background='#1b8917';
-        msg.textContent='❌ Error saving data. Please try again.';
-        btn.innerHTML='<div class="gpay-icon"><span class="gpay-g">G</span></div> Secure';
-        btn.disabled=false;
-        setTimeout(()=>toast.className='toast', 4000);
+        // Create WhatsApp message
+        const message = `Hello! I want to purchase: *${selectedProduct.name}* (₦${selectedProduct.price})\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}`;
+        const encodedMessage = encodeURIComponent(message);
+        const whatsappURL = `https://wa.me/2347071358027?text=${encodedMessage}`;
 
-      } catch(error) {
-        console.error("Firestore error:", error);
-        toast.className='toast show'; toast.style.background='#c5221f';
-        msg.textContent='❌ Error saving data. Please try again.';
-        btn.innerHTML='<div class="gpay-icon"><span class="gpay-g">G</span></div> Secure';
-        btn.disabled=false;
-        setTimeout(()=>toast.className='toast', 4000);
+        showToast("Redirecting to WhatsApp...", "success");
+        closePurchaseModal();
+        
+        // Redirect to WhatsApp
+        setTimeout(() => {
+          window.open(whatsappURL, '_blank');
+        }, 1000);
+      } catch (error) {
+        console.error("Error:", error);
+        showToast("Error processing purchase. Please try again.", "error");
+      }
+    };
+
+    // Admin: Toggle admin view
+    window.toggleAdmin = function(e) {
+      e.preventDefault();
+      const adminView = document.getElementById('adminView');
+      const customerView = document.getElementById('customerView');
+
+      if (adminView.classList.contains('show')) {
+        adminView.classList.remove('show');
+        customerView.style.display = 'block';
+        adminAuthenticated = false;
+      } else {
+        adminView.classList.add('show');
+        customerView.style.display = 'none';
+        if (!adminAuthenticated) {
+          document.getElementById('authSection').style.display = 'block';
+          document.getElementById('adminDashboard').style.display = 'none';
+        }
+      }
+    };
+
+    // Admin: Authenticate
+    window.authenticateAdmin = function() {
+      const password = document.getElementById('adminPassword').value;
+      if (password === ADMIN_PASSWORD) {
+        adminAuthenticated = true;
+        document.getElementById('authSection').style.display = 'none';
+        document.getElementById('adminDashboard').style.display = 'block';
+        loadAdminProducts();
+        showToast("✅ Authenticated successfully", "success");
+      } else {
+        showToast("❌ Invalid password", "error");
+      }
+    };
+
+    // Admin: Add product
+    window.addProduct = async function() {
+      const name = document.getElementById('productName').value.trim();
+      const desc = document.getElementById('productDesc').value.trim();
+      const price = document.getElementById('productPrice').value;
+      const emoji = document.getElementById('productEmoji').value.trim() || '📦';
+
+      if (!name || !desc || !price) {
+        showToast("Please fill all required fields", "error");
+        return;
+      }
+
+      try {
+        await addDoc(collection(db, "mkProducts"), {
+          name: name,
+          description: desc,
+          price: parseInt(price),
+          emoji: emoji,
+          createdAt: serverTimestamp()
+        });
+
+        document.getElementById('productName').value = '';
+        document.getElementById('productDesc').value = '';
+        document.getElementById('productPrice').value = '';
+        document.getElementById('productEmoji').value = '';
+
+        loadProducts();
+        loadAdminProducts();
+        showToast("✅ Product added successfully", "success");
+      } catch (error) {
+        console.error("Error:", error);
+        showToast("Error adding product", "error");
+      }
+    };
+
+    // Admin: Load products for admin view
+    async function loadAdminProducts() {
+      try {
+        const querySnapshot = await getDocs(collection(db, "mkProducts"));
+        const productsList = document.getElementById('productsList');
+        const noProducts = document.getElementById('noProducts');
+
+        if (querySnapshot.empty) {
+          productsList.innerHTML = '';
+          noProducts.style.display = 'block';
+          return;
+        }
+
+        noProducts.style.display = 'none';
+        productsList.innerHTML = '';
+
+        querySnapshot.forEach((doc) => {
+          const product = doc.data();
+          const item = document.createElement('div');
+          item.className = 'product-item';
+          item.innerHTML = `
+            <div class="product-item-info">
+              <h3>${product.emoji || '📦'} ${product.name}</h3>
+              <p>${product.description}</p>
+              <p style="color:#5b9ef5; font-weight:600;">₦${product.price.toLocaleString()}</p>
+            </div>
+            <div class="product-item-actions">
+              <button class="btn-delete" onclick="deleteProduct('${doc.id}')">Delete</button>
+            </div>
+          `;
+          productsList.appendChild(item);
+        });
+      } catch (error) {
+        console.error("Error:", error);
       }
     }
+
+    // Admin: Delete product
+    window.deleteProduct = async function(productId) {
+      if (confirm('Are you sure you want to delete this product?')) {
+        try {
+          await deleteDoc(doc(db, "mkProducts", productId));
+          loadProducts();
+          loadAdminProducts();
+          showToast("✅ Product deleted", "success");
+        } catch (error) {
+          console.error("Error:", error);
+          showToast("Error deleting product", "error");
+        }
+      }
+    };
+
+    // Admin: Logout
+    window.logoutAdmin = function() {
+      adminAuthenticated = false;
+      document.getElementById('adminView').classList.remove('show');
+      document.getElementById('customerView').style.display = 'block';
+      document.getElementById('adminPassword').value = '';
+      document.getElementById('authSection').style.display = 'block';
+      document.getElementById('adminDashboard').style.display = 'none';
+      showToast("✅ Logged out", "success");
+    };
+
+    // Search functionality
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase();
+      const filtered = allProducts.filter(p => 
+        p.name.toLowerCase().includes(query) || 
+        p.description.toLowerCase().includes(query)
+      );
+      displayProducts(filtered);
+    });
+
+    // Show toast notification
+    function showToast(message, type = 'info') {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.style.background = type === 'error' ? '#c5221f' : type === 'success' ? '#1b8917' : '#5b9ef5';
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    window.showToast = showToast;
   </script>
 </body>
 </html>
