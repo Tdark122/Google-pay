@@ -8,41 +8,45 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 <style>
   :root{
-    --bg:#0f0f12;
-    --card:#151616;
-    --muted:#9aa0a6;
-    --accent:#5b9ef5;
-    --accent-2:#ff6d5b;
-    --glass:rgba(255,255,255,0.03);
+    /* Jumia-like light theme with orange accent */
+    --bg:#ffffff;
+    --card:#ffffff;
+    --muted:#6b6b6b;
+    --accent:#ff6a00; /* Jumia orange */
+    --accent-2:#ff8a00;
+    --glass:rgba(0,0,0,0.03);
     --success:#1b8917;
     --danger:#c5221f;
-    --radius:14px;
+    --radius:12px;
     --container:1200px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%}
-  body{min-height:100vh;background:linear-gradient(180deg,var(--bg),#060607);color:#e8eaed;font-family:'Roboto',sans-serif;padding-bottom:2.5rem;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+  body{min-height:100vh;background:linear-gradient(180deg,var(--bg),#f8f8f8);color:#111;font-family:'Roboto',sans-serif;padding-bottom:2.5rem;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 
   /* Header */
-  .header{backdrop-filter:blur(6px);background:linear-gradient(180deg, rgba(20,20,20,0.6), rgba(10,10,10,0.4));padding:0.75rem 1rem;position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(255,255,255,0.03)}
+  .header{backdrop-filter:blur(6px);background:transparent;padding:0.75rem 1rem;position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(0,0,0,0.04)}
   .header-content{max-width:var(--container);margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:12px}
   .logo{display:flex;align-items:center;gap:8px;font-size:20px;font-weight:700}
   .logo .g{color:var(--accent)}.logo .m{color:var(--accent-2)}
   .logo small{color:var(--muted);font-weight:500;margin-left:6px}
 
   .search-wrap{flex:1;display:flex;justify-content:center}
-  .search-bar{width:100%;max-width:520px;display:flex;align-items:center;background:var(--glass);padding:6px;border-radius:999px;border:1px solid rgba(255,255,255,0.03)}
+  .search-bar{width:100%;max-width:520px;display:flex;align-items:center;background:#fff;padding:6px;border-radius:999px;border:1px solid rgba(0,0,0,0.06)}
   .search-bar input{flex:1;padding:10px 14px;border:none;background:transparent;color:inherit;font-size:14px;outline:none}
   .search-bar .icon{color:var(--muted);padding:6px 10px}
 
+  /* admin link (icon only) */
+  .admin-icon-btn{background:#f2f2f2;color:#6b6b6b;border:none;padding:8px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px}
+  .admin-icon-btn:hover{background:#e8e8e8}
+
   .admin-link{color:var(--accent);text-decoration:none;font-size:14px;padding:8px 12px;border-radius:10px;display:inline-flex;align-items:center;gap:8px}
-  .admin-link:hover{background:rgba(255,255,255,0.02)}
 
   /* Container */
   .container{max-width:var(--container);margin:1.5rem auto;padding:0 1rem}
 
   /* Hero */
-  .hero{background:linear-gradient(135deg, rgba(91,158,245,0.15) 0%, rgba(255,109,91,0.12) 100%);border-radius:20px;padding:2.25rem 1.5rem;text-align:center;color:inherit;margin-bottom:2rem;border:1px solid rgba(255,255,255,0.02)}
+  .hero{background:linear-gradient(135deg, rgba(255,106,0,0.06) 0%, rgba(255,138,0,0.03) 100%);border-radius:12px;padding:2.25rem 1.5rem;text-align:center;color:inherit;margin-bottom:2rem;border:1px solid rgba(0,0,0,0.04)}
   .hero h1{font-size:28px;margin-bottom:0.5rem;font-family:'Google Sans',sans-serif}
   .hero p{font-size:15px;color:var(--muted)}
 
@@ -52,8 +56,8 @@
   .products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
 
   /* Product Card */
-  .product-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,0.03);transition:transform .28s cubic-bezier(.2,.9,.3,1), box-shadow .28s;cursor:pointer;display:flex;flex-direction:column}
-  .product-card:hover{box-shadow:0 12px 40px rgba(91,158,245,0.12);transform:translateY(-6px)}
+  .product-card{background:var(--card);border-radius:12px;overflow:hidden;border:1px solid rgba(0,0,0,0.06);transition:transform .28s, box-shadow .28s;padding:0}
+  .product-card:hover{box-shadow:0 12px 40px rgba(0,0,0,0.06);transform:translateY(-6px)}
   .product-image{width:100%;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;font-size:48px;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff}
   .product-info{padding:1.25rem;flex:1;display:flex;flex-direction:column}
   .product-name{font-size:16px;font-weight:700;margin-bottom:0.35rem}
@@ -61,23 +65,23 @@
   .product-price{font-size:18px;font-weight:700;color:var(--accent);margin-bottom:0.75rem}
   .product-actions{display:flex;gap:0.5rem}
   .btn-purchase{flex:1;padding:10px 14px;background:var(--accent);color:#fff;border:none;border-radius:10px;font-weight:700;cursor:pointer;transition:transform .12s}
-  .btn-purchase:hover{background:#4a8ae5;box-shadow:0 8px 18px rgba(91,158,245,0.18)}
+  .btn-purchase:hover{background:#e15a00;box-shadow:0 8px 18px rgba(255,106,0,0.12)}
 
   /* Modal */
-  .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:linear-gradient(180deg,rgba(0,0,0,0.6),rgba(0,0,0,0.75));z-index:1000;align-items:center;justify-content:center;padding:20px}
+  .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:linear-gradient(180deg,rgba(0,0,0,0.6),rgba(0,0,0,0.75));z-index:1000;align-items:center;justify-content:center;padding:1rem}
   .modal.show{display:flex}
-  .modal-content{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:14px;padding:1.5rem;max-width:520px;width:100%;box-shadow:0 10px 40px rgba(0,0,0,0.6)}
+  .modal-content{background:var(--card);border-radius:12px;padding:1.5rem;max-width:520px;width:100%;box-shadow:0 10px 40px rgba(0,0,0,0.06)}
   .modal-header{font-size:18px;font-weight:700;margin-bottom:1rem;display:flex;justify-content:space-between;align-items:center}
   .modal-close{background:none;border:none;color:var(--muted);font-size:22px;cursor:pointer}
   .modal-field{margin-bottom:1rem}
   .modal-field label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:8px;text-transform:uppercase}
-  .modal-field input{width:100%;padding:12px;border:1px solid rgba(255,255,255,0.03);border-radius:10px;background:transparent;color:inherit;font-size:14px}
+  .modal-field input{width:100%;padding:12px;border:1px solid rgba(0,0,0,0.06);border-radius:10px;background:transparent;color:inherit;font-size:14px}
   .modal-actions{display:flex;gap:0.75rem;margin-top:0.5rem}
   .btn-confirm{flex:1;padding:12px;background:var(--accent);color:#fff;border:none;border-radius:10px;font-weight:700;cursor:pointer}
-  .btn-cancel{flex:1;padding:12px;background:rgba(255,255,255,0.03);color:inherit;border:none;border-radius:10px;font-weight:700;cursor:pointer}
+  .btn-cancel{flex:1;padding:12px;background:#f2f2f2;color:inherit;border:none;border-radius:10px;font-weight:700;cursor:pointer}
 
   /* Toast */
-  .toast{display:none;position:fixed;bottom:1.25rem;right:1.25rem;background:var(--success);color:#fff;padding:12px 18px;border-radius:10px;box-shadow:0 6px 22px rgba(0,0,0,0.5);z-index:2000}
+  .toast{display:none;position:fixed;bottom:1.25rem;right:1.25rem;background:var(--success);color:#fff;padding:12px 18px;border-radius:10px;box-shadow:0 6px 22px rgba(0,0,0,0.1);z-index:2000}
   .toast.show{display:block;animation:slideIn .3s ease}
   @keyframes slideIn{from{transform:translateX(160px);opacity:0}to{transform:translateX(0);opacity:1}}
 
@@ -88,17 +92,17 @@
   /* Admin Page */
   .admin-container{display:none;max-width:var(--container);margin:1.5rem auto}
   .admin-container.show{display:block}
-  .admin-header{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:1.25rem;border-radius:12px;margin-bottom:1rem;border:1px solid rgba(255,255,255,0.02)}
+  .admin-header{background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.6));padding:1.25rem;border-radius:12px;margin-bottom:1rem;border:1px solid rgba(0,0,0,0.04)}
   .admin-header h1{font-size:20px;margin-bottom:0.5rem}
-  .admin-section{background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);padding:1rem;border-radius:12px;margin-bottom:1rem;border:1px solid rgba(255,255,255,0.02)}
+  .admin-section{background:linear-gradient(180deg, rgba(255,255,255,1), transparent);padding:1rem;border-radius:12px;margin-bottom:1rem;border:1px solid rgba(0,0,0,0.04)}
   .admin-section h2{font-size:16px;margin-bottom:0.75rem;color:var(--accent)}
   .admin-form{display:flex;flex-direction:column;gap:0.75rem}
   .form-group label{font-size:12px;font-weight:600;color:var(--muted);margin-bottom:6px;text-transform:uppercase}
-  .form-group input,.form-group textarea{padding:10px;border:1px solid rgba(255,255,255,0.03);border-radius:10px;background:transparent;color:inherit;font-size:14px}
+  .form-group input,.form-group textarea,.form-group select{padding:10px;border:1px solid rgba(0,0,0,0.06);border-radius:10px;background:transparent;color:inherit;font-size:14px}
   .form-group textarea{resize:vertical;min-height:80px}
   .btn-submit{padding:10px;background:var(--accent);color:#fff;border:none;border-radius:10px;font-weight:700;cursor:pointer}
   .products-list{display:flex;flex-direction:column;gap:0.75rem;margin-top:0.75rem}
-  .product-item{background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);padding:12px;border-radius:10px;display:flex;justify-content:space-between;align-items:center;border:1px solid rgba(255,255,255,0.02)}
+  .product-item{background:var(--card);padding:12px;border-radius:10px;display:flex;justify-content:space-between;align-items:center;border:1px solid rgba(0,0,0,0.04)}
   .product-item-info h3{font-size:15px;margin-bottom:6px}
   .product-item-info p{font-size:13px;color:var(--muted)}
   .product-item-actions{display:flex;gap:0.5rem}
@@ -108,7 +112,7 @@
   .password-input{max-width:340px;margin:0 auto}
 
   /* Auth Status */
-  .auth-status{text-align:center;padding:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);border-radius:10px;border:1px solid rgba(255,255,255,0.02)}
+  .auth-status{text-align:center;padding:12px;background:linear-gradient(180deg, rgba(255,255,255,1), transparent);border-radius:10px;border:1px solid rgba(0,0,0,0.04)}
   .btn-logout{padding:8px 14px;background:var(--danger);color:#fff;border:none;border-radius:10px;cursor:pointer}
 
   /* Responsive */
@@ -132,6 +136,7 @@
   /* small niceties */
   .muted{color:var(--muted)}
   a.inline{color:var(--accent)}
+  .category-badge{display:inline-block;background:#fff;border:1px solid rgba(0,0,0,0.04);color:var(--accent);padding:6px 8px;border-radius:8px;font-weight:600;font-size:12px}
 </style>
 </head>
 <body>
@@ -153,7 +158,8 @@
 
       <div style="display:flex;align-items:center;gap:8px">
         <button id="mobileSearchToggle" class="admin-link" style="display:none" aria-label="Search" onclick="toggleMobileSearch(event)"><i class="fas fa-search"></i></button>
-        <a href="#" class="admin-link" onclick="toggleAdmin(event)"><i class="fas fa-cog"></i> Admin</a>
+        <!-- Icon-only small grey admin button (no text) -->
+        <button id="adminToggleBtn" class="admin-icon-btn" onclick="toggleAdmin(event)" aria-label="Admin"><i class="fas fa-cog"></i></button>
       </div>
     </div>
   </div>
@@ -183,7 +189,7 @@
     <div class="admin-container" id="adminView">
       <div class="admin-header">
         <h1>Admin Dashboard</h1>
-        <p style="color:#9aa0a6; font-size:13px;">Manage your MK Digital Marketplace products</p>
+        <p style="color:var(--muted); font-size:13px;">Manage your MK Digital Marketplace products</p>
       </div>
 
       <!-- Admin Authentication -->
@@ -191,7 +197,7 @@
         <h2>Enter Admin Password</h2>
         <div class="password-prompt">
           <div class="password-input">
-            <input type="password" id="adminPassword" placeholder="Enter password" style="width:100%; padding:10px; border:1px solid rgba(255,255,255,0.03); border-radius:8px; background:transparent; color:inherit;">
+            <input type="password" id="adminPassword" placeholder="Enter password" style="width:100%; padding:10px; border:1px solid rgba(0,0,0,0.06); border-radius:8px; background:transparent; color:inherit;" />
             <button class="btn-submit" style="margin-top:0.75rem; width:100%;" onclick="authenticateAdmin()">Authenticate</button>
           </div>
         </div>
@@ -216,11 +222,29 @@
               <input type="number" id="productPrice" placeholder="0" min="0">
             </div>
             <div class="form-group">
+              <label>Category</label>
+              <select id="productCategory"><option value="">Uncategorized</option></select>
+            </div>
+            <div class="form-group">
               <label>Emoji Icon</label>
               <input type="text" id="productEmoji" placeholder="e.g., 🎓" maxlength="2">
             </div>
             <button class="btn-submit" onclick="addProduct()">Add Product</button>
           </div>
+        </div>
+
+        <!-- Manage Categories -->
+        <div class="admin-section">
+          <h2>Manage Categories</h2>
+          <div class="admin-form">
+            <div class="form-group">
+              <label>Category Name *</label>
+              <input type="text" id="categoryName" placeholder="e.g., Ebooks">
+            </div>
+            <button class="btn-submit" onclick="addCategory()">Add Category</button>
+          </div>
+          <div class="products-list" id="categoriesList"></div>
+          <p id="noCategories" style="text-align:center; color:var(--muted); margin-top:1rem;">No categories yet</p>
         </div>
 
         <!-- Products List -->
@@ -296,6 +320,7 @@
     // Load products on page load
     window.addEventListener('DOMContentLoaded', () => {
       loadProducts();
+      loadCategories();
       // show mobile search toggle if small device
       handleResponsiveUI();
       window.addEventListener('resize', handleResponsiveUI);
@@ -357,13 +382,18 @@
         <div class="product-card">
           <div class="product-image">${product.emoji || '📦'}</div>
           <div class="product-info">
-            <div class="product-name">${escapeHtml(product.name)}</div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+              <div class="product-name">${escapeHtml(product.name)}</div>
+              <div>${product.category ? `<span class=\"category-badge\">${escapeHtml(product.category)}</span>` : ''}</div>
+            </div>
             <div class="product-desc">${escapeHtml(product.description)}</div>
-            <div class="product-price">₦${Number(product.price).toLocaleString()}</div>
-            <div class="product-actions">
-              <button class="btn-purchase" onclick="openPurchaseModal('${product.id}', '${escapeJs(product.name)}', '${product.price}')">
-                <i class="fas fa-shopping-cart"></i> Buy Now
-              </button>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-top:12px">
+              <div class="product-price">₦${Number(product.price).toLocaleString()}</div>
+              <div class="product-actions">
+                <button class="btn-purchase" onclick="openPurchaseModal('${product.id}', '${escapeJs(product.name)}', '${product.price}')">
+                  <i class="fas fa-shopping-cart"></i> Buy Now
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -471,6 +501,7 @@
         document.getElementById('authSection').style.display = 'none';
         document.getElementById('adminDashboard').style.display = 'block';
         loadAdminProducts();
+        loadCategories();
         showToast("✅ Authenticated successfully", "success");
       } else {
         showToast("❌ Invalid password", "error");
@@ -483,6 +514,7 @@
       const desc = document.getElementById('productDesc').value.trim();
       const price = document.getElementById('productPrice').value;
       const emoji = document.getElementById('productEmoji').value.trim() || '📦';
+      const category = document.getElementById('productCategory').value || '';
 
       if (!name || !desc || !price) {
         showToast("Please fill all required fields", "error");
@@ -495,6 +527,7 @@
           description: desc,
           price: parseInt(price),
           emoji: emoji,
+          category: category,
           createdAt: serverTimestamp()
         });
 
@@ -537,6 +570,7 @@
               <h3>${escapeHtml(product.emoji || '📦')} ${escapeHtml(product.name)}</h3>
               <p>${escapeHtml(product.description)}</p>
               <p style="color:var(--accent); font-weight:600;">₦${Number(product.price).toLocaleString()}</p>
+              <p class="muted">${product.category ? 'Category: ' + escapeHtml(product.category) : ''}</p>
             </div>
             <div class="product-item-actions">
               <button class="btn-delete" onclick="deleteProduct('${docItem.id}')">Delete</button>
@@ -564,6 +598,72 @@
       }
     };
 
+    // --- Category management ---
+    async function loadCategories(){
+      try{
+        const querySnapshot = await getDocs(collection(db, "mkCategories"));
+        const list = document.getElementById('categoriesList');
+        const select = document.getElementById('productCategory');
+        const noCats = document.getElementById('noCategories');
+
+        select.innerHTML = '<option value="">Uncategorized</option>';
+        list.innerHTML = '';
+
+        if (querySnapshot.empty){
+          noCats.style.display = 'block';
+        } else {
+          noCats.style.display = 'none';
+          querySnapshot.forEach((docItem) => {
+            const cat = docItem.data();
+            // populate select
+            const opt = document.createElement('option');
+            opt.value = cat.name;
+            opt.textContent = cat.name;
+            select.appendChild(opt);
+
+            // populate admin list
+            const item = document.createElement('div');
+            item.className = 'product-item';
+            item.innerHTML = `
+              <div class="product-item-info">
+                <h3>${escapeHtml(cat.name)}</h3>
+                <p class="muted">Created</p>
+              </div>
+              <div class="product-item-actions">
+                <button class="btn-delete" onclick="deleteCategory('${docItem.id}')">Delete</button>
+              </div>
+            `;
+            list.appendChild(item);
+          });
+        }
+      }catch(err){
+        console.error('Error loading categories', err);
+      }
+    }
+
+    window.addCategory = async function(){
+      const name = document.getElementById('categoryName').value.trim();
+      if(!name){ showToast('Please enter a category name', 'error'); return; }
+      try{
+        await addDoc(collection(db, 'mkCategories'), { name: name, createdAt: serverTimestamp() });
+        document.getElementById('categoryName').value = '';
+        loadCategories();
+        showToast('✅ Category added', 'success');
+      }catch(err){ console.error(err); showToast('Error adding category','error'); }
+    }
+
+    window.deleteCategory = async function(categoryId){
+      if(!confirm('Delete this category?')) return;
+      try{
+        await deleteDoc(doc(db, 'mkCategories', categoryId));
+        // Note: products with this category won't be modified automatically.
+        loadCategories();
+        loadProducts();
+        loadAdminProducts();
+        showToast('✅ Category deleted','success');
+      }catch(err){ console.error(err); showToast('Error deleting category','error'); }
+    }
+
     // Admin: Logout
     window.logoutAdmin = function() {
       adminAuthenticated = false;
@@ -579,8 +679,9 @@
     document.getElementById('searchInput').addEventListener('input', (e) => {
       const query = e.target.value.toLowerCase();
       const filtered = allProducts.filter(p => 
-        (p.name || '').toLowerCase().includes(query) || 
-        (p.description || '').toLowerCase().includes(query)
+        ((p.name || '').toLowerCase().includes(query)) || 
+        ((p.description || '').toLowerCase().includes(query)) ||
+        ((p.category || '').toLowerCase().includes(query))
       );
       displayProducts(filtered);
     });
