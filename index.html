@@ -46,7 +46,7 @@
   .container{max-width:var(--container);margin:1.5rem auto;padding:0 1rem}
 
   /* Hero */
-  .hero{background:linear-gradient(135deg, rgba(255,106,0,0.06) 0%, rgba(255,138,0,0.03) 100%);border-radius:12px;padding:2.25rem 1.5rem;text-align:center;color:inherit;margin-bottom:2rem;border:1px solid rgba(0,0,0,0.04)}
+  .hero{background:linear-gradient(135deg, rgba(255,106,0,0.06) 0%, rgba(255,138,0,0.03) 100%);border-radius:12px;padding:2.25rem 1.5rem;text-align:center;color:inherit;margin-bottom:2rem;border:1px solid rgba(0,0,0,0.02)}
   .hero h1{font-size:28px;margin-bottom:0.5rem;font-family:'Google Sans',sans-serif}
   .hero p{font-size:15px;color:var(--muted)}
 
@@ -197,7 +197,7 @@
         <h2>Enter Admin Password</h2>
         <div class="password-prompt">
           <div class="password-input">
-            <input type="password" id="adminPassword" placeholder="Enter password" style="width:100%; padding:10px; border:1px solid rgba(0,0,0,0.06); border-radius:8px; background:transparent; color:inherit;" />
+            <input type="password" id="adminPassword" placeholder="Enter password" style="width:100%; padding:10px; border:1px solid rgba(0,0,0,0.06); border-radius:8px; background:transparent; color:inherit; font-size:14px;">
             <button class="btn-submit" style="margin-top:0.75rem; width:100%;" onclick="authenticateAdmin()">Authenticate</button>
           </div>
         </div>
@@ -282,7 +282,7 @@
       </div>
       <div class="modal-field">
         <label>WhatsApp Number *</label>
-        <input type="tel" id="buyerPhone" placeholder="2347071358027" value="234">
+        <input type="tel" id="buyerPhone" placeholder="2347037392295" value="234">
       </div>
       <div class="modal-actions">
         <button class="btn-confirm" onclick="completePurchase()">Buy via WhatsApp</button>
@@ -316,6 +316,7 @@
     let selectedProduct = null;
     let adminAuthenticated = false;
     const ADMIN_PASSWORD = "mk123"; // Change this to your secure password
+    const BUSINESS_WHATSAPP = "2347037392295"; // Your WhatsApp number
 
     // Load products on page load
     window.addEventListener('DOMContentLoaded', () => {
@@ -456,9 +457,8 @@
         // Create WhatsApp message
         const message = `Hello! I want to purchase: *${selectedProduct.name}* (₦${selectedProduct.price})\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}`;
         const encodedMessage = encodeURIComponent(message);
-        // Use buyer phone or fallback to business number
-        const whatsappNumber = phone.startsWith('234') ? phone : '2347071358027';
-        const whatsappURL = `https://wa.me/${whatsappNumber.replace(/[^0-9]/g,'')}?text=${encodedMessage}`;
+        // Always send to business WhatsApp number
+        const whatsappURL = `https://wa.me/${BUSINESS_WHATSAPP}?text=${encodedMessage}`;
 
         showToast("Redirecting to WhatsApp...", "success");
         closePurchaseModal();
